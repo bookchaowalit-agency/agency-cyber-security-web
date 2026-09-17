@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "mode": "persuade",
+  "world": "Security operations console",
+  "artifact": "terminal",
+  "tokens": {
+    "color": {
+      "bg": "#07110f",
+      "ink": "#e1f6ec",
+      "muted": "#9bb7aa",
+      "line": "#285044",
+      "panel": "#0d201b",
+      "accent": "#6cf1bf",
+      "inverse": "#dff8ed",
+      "inverseInk": "#07110f"
+    },
+    "typography": {
+      "display": "Noto Serif Thai",
+      "body": "Noto Sans Thai",
+      "utility": "system monospace"
+    },
+    "spacing": {
+      "page": "clamp(18px, 5vw, 76px)",
+      "section": "clamp(67px, 10vw, 144px)"
+    },
+    "shape": {
+      "radius": "world-specific",
+      "elevation": "one deliberate surface system"
+    }
+  }
+}
