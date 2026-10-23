@@ -3,12 +3,15 @@ import { site } from '@/lib/site';
 
 const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
+// Paths are appended to this base, so a query, fragment or user:password would end up inside every
+// canonical and sitemap URL: those are rejected. Every trailing slash is stripped.
 function parsePublicUrl(value: string | undefined) {
   if (!value) return undefined;
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:' && url.protocol !== 'http:') return undefined;
-    return url.toString().replace(/\/$/, '');
+    if (url.search || url.hash || url.username || url.password || /[?#]/.test(value)) return undefined;
+    return url.toString().replace(/\/+$/, '');
   } catch {
     return undefined;
   }

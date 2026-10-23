@@ -31,6 +31,20 @@ describe("site config", () => {
     }
   });
 
+  it("rejects base URLs whose query, fragment or credentials would leak into every canonical link", async () => {
+    for (const bad of ["https://example.com/?ref=x", "https://example.com/#top", "https://example.com/?", "https://user:secret@example.com"]) {
+      const { siteConfig } = await loadConfig({ NEXT_PUBLIC_SITE_URL: bad, NEXT_PUBLIC_SITE_INDEXABLE: "true" });
+      expect(siteConfig.publicUrl, bad).toBeUndefined();
+      expect(siteConfig.isIndexable, bad).toBe(false);
+    }
+  });
+
+  it("strips every trailing slash so paths never start with //", async () => {
+    const { siteConfig, canonicalUrl } = await loadConfig({ NEXT_PUBLIC_SITE_URL: "https://example.com/base//", NEXT_PUBLIC_SITE_INDEXABLE: "true" });
+    expect(siteConfig.publicUrl).toBe("https://example.com/base");
+    expect(canonicalUrl("/services")).toBe("https://example.com/base/services/");
+  });
+
   it("needs both a public URL and NEXT_PUBLIC_SITE_INDEXABLE=true to allow indexing", async () => {
     const withoutFlag = await loadConfig({ NEXT_PUBLIC_SITE_URL: "https://example.com/", NEXT_PUBLIC_SITE_INDEXABLE: "yes" });
     expect(withoutFlag.siteConfig.publicUrl).toBe("https://example.com");
