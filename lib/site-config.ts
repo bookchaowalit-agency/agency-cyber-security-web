@@ -29,8 +29,15 @@ export function absoluteUrl(path: string) {
   return siteConfig.metadataUrl + normalizedPath;
 }
 
+// next.config.ts sets trailingSlash: true, so every page lives at a path ending in "/".
+// Page URLs (canonical, sitemap, structured data) use that form so they never point at a redirect.
+export function pageUrl(path: string) {
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
+  return absoluteUrl(normalizedPath.endsWith('/') ? normalizedPath : normalizedPath + '/');
+}
+
 export function canonicalUrl(path: string) {
-  return siteConfig.publicUrl ? absoluteUrl(path) : undefined;
+  return siteConfig.publicUrl ? pageUrl(path) : undefined;
 }
 
 export function pageMetadata(title: string, description: string, path: string): Metadata {
