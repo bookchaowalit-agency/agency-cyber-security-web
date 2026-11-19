@@ -21,6 +21,7 @@ export const site = {
   "status": "target",
   "design": {
     "projectName": "solo-agency-cyber-security",
+    "productionUrl": "https://solo-agency-cyber-security.vercel.app",
     "archetype": "terminal",
     "motif": "terminal",
     "world": "Security operations console",
