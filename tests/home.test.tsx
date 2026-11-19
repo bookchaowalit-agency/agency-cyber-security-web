@@ -13,9 +13,9 @@ vi.mock("next/font/local", () => ({ default: () => ({ variable: "font-var" }) })
 describe("home page", () => {
   it("renders the agency promise, offer, scope and the no-lead-form notice", () => {
     const html = renderToString(<Home />);
-    expect(html).toContain(site.promise);
+    expect(html.replace(/<[^>]*>/g, "")).toContain(site.promise);
     expect(html).toContain(site.offer);
-    for (const item of site.scope) expect(html).toContain(item.replace(/&/g, "&amp;"));
+    for (const item of site.scope) expect(html.replace(/<[^>]*>/g, "")).toContain(item.replace(/&/g, "&amp;"));
     expect(html).toContain("ยังไม่มี lead form หรือการรับข้อมูลลูกค้า");
     expect(html).toContain("no client claims");
   });
