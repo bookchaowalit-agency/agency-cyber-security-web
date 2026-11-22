@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { site } from '@/lib/site';
 import { canonicalUrl, siteConfig, socialImage } from '@/lib/site-config';
 import './design-floor/tokens.css';
+import './app-theme.css';
 import './globals.css';
 import './ux-floor.css';
 

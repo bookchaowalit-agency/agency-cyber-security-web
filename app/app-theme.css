@@ -1,0 +1,19 @@
+/* Cyber & Security palette and type overrides for the shared design-floor tokens. */
+:root {
+  --color-bg: #07110f;
+  --color-surface: #0d201b;
+  --color-fg: #e1f6ec;
+  --color-fg-muted: #9bb7aa;
+  --color-accent: #6cf1bf;
+  --color-accent-fg: #07110f;
+  --color-border: #285044;
+  --color-focus: #6cf1bf;
+  --color-danger: #ff8e8e;
+  --color-success: #6cf1bf;
+  --color-inverse: #dff8ed;
+  --color-inverse-fg: #07110f;
+  --color-accent-text: #6cf1bf;
+  --font-sans: var(--font-sans-thai), Arial, sans-serif;
+  --font-serif: var(--font-serif-thai), Georgia, 'Times New Roman', serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+}
